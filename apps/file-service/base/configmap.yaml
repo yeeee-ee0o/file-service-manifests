@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: file-service-config
+  labels:
+    app.kubernetes.io/name: file-service
+data:
+  SPRING_PROFILES_ACTIVE: local
+  JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=75"
+  SERVER_SHUTDOWN: graceful
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: file-service-secret
+  labels:
+    app.kubernetes.io/name: file-service
+type: Opaque
+stringData:
+  DEMO_API_KEY: replace-me-in-eks
